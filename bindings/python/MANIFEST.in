@@ -1,5 +1,9 @@
 recursive-include src *
-include LICENSE.TXT
-include README.txt
-include BUILDING.txt
-include Makefile
+recursive-include prebuilt *
+include BUILDING.md
+graft capstone/lib
+graft capstone/include
+global-include *.a
+global-include *.so.*
+global-include *.*lib
+global-include *.dll
