@@ -104,19 +104,7 @@ jobs:
           CIBW_TEST_COMMAND: >
             python -m pip install {package}/cstest_py &&
             python {package}/tests/test_all.py &&
-            cd {project}/suite/cstest/test/ &&
-            python integration_tests.py cstest_py &&
-            cd {project} &&
-            cstest_py {project}/tests/MC/ &&
-            cstest_py {project}/tests/details/ &&
-            cstest_py {project}/tests/issues/ &&
-            cstest_py {project}/tests/features/
-          CIBW_TEST_COMMAND_WINDOWS: >
-            python -m pip install {package}/cstest_py &&
-            python {package}/tests/test_all.py &&
-            cd /d {project}/suite/cstest/test/ &&
-            python integration_tests.py cstest_py &&
-            cd /d {project} &&
+            python {project}/suite/cstest/test/integration_tests.py cstest_py &&
             cstest_py {project}/tests/MC/ &&
             cstest_py {project}/tests/details/ &&
             cstest_py {project}/tests/issues/ &&
@@ -233,19 +221,7 @@ jobs:
           CIBW_TEST_COMMAND: >
             python -m pip install {package}/cstest_py &&
             python {package}/tests/test_all.py &&
-            cd {project}/suite/cstest/test/ &&
-            python integration_tests.py cstest_py &&
-            cd {project} &&
-            cstest_py {project}/tests/MC/ &&
-            cstest_py {project}/tests/details/ &&
-            cstest_py {project}/tests/issues/ &&
-            cstest_py {project}/tests/features/
-          CIBW_TEST_COMMAND_WINDOWS: >
-            python -m pip install {package}/cstest_py &&
-            python {package}/tests/test_all.py &&
-            cd /d {project}/suite/cstest/test/ &&
-            python integration_tests.py cstest_py &&
-            cd /d {project} &&
+            python {project}/suite/cstest/test/integration_tests.py cstest_py &&
             cstest_py {project}/tests/MC/ &&
             cstest_py {project}/tests/details/ &&
             cstest_py {project}/tests/issues/ &&
