@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2024 Antelox <anteloxrce@gmail.com>
+# SPDX-License-Identifier: BSD-3
+
 import glob
 import logging
 import os
