@@ -84,11 +84,10 @@ def copy_sources():
     shutil.copytree(os.path.join(BUILD_DIR, "include"), os.path.join(SRC_DIR, "include"))
 
     src.extend(glob.glob(os.path.join(BUILD_DIR, "*.[ch]")))
-
+    src.extend(glob.glob(os.path.join(BUILD_DIR, "*.m[dk]")))
     src.extend(glob.glob(os.path.join(BUILD_DIR, "LICENSES/*")))
-    src.extend(glob.glob(os.path.join(BUILD_DIR, "README")))
     src.extend(glob.glob(os.path.join(BUILD_DIR, "*.TXT")))
-    src.extend(glob.glob(os.path.join(BUILD_DIR, "RELEASE_NOTES")))
+    src.extend(glob.glob(os.path.join(BUILD_DIR, "ChangeLog")))
     src.extend(glob.glob(os.path.join(BUILD_DIR, "CMakeLists.txt")))
 
     for filename in src:
