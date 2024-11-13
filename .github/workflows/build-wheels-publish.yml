@@ -1,4 +1,7 @@
-name: Build wheels with cibuildwheel
+# SPDX-FileCopyrightText: 2024 Antelox <anteloxrce@gmail.com>
+# SPDX-License-Identifier: BSD-3
+
+name: Build and publish wheels with cibuildwheel
 
 on:
   workflow_dispatch:
@@ -243,8 +246,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Optional, use if you use setuptools_scm
-          submodules: true  # Optional, use if you have submodules
+          fetch-depth: 0
+          submodules: true
 
       - name: Build SDist
         run: |

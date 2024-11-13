@@ -3,7 +3,6 @@ recursive-include prebuilt *
 include BUILDING.md
 graft capstone/lib
 graft capstone/include
-global-include *.a
-global-include *.so.*
-global-include *.*lib
 global-include *.dll
+global-include *.dylib
+global-include *.so.*
