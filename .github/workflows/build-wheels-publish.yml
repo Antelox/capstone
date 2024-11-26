@@ -24,6 +24,11 @@ on:
       - "docs/**"
   pull_request:
 
+# Automatically cancel any previous running workflow on new push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 env:
   # Enable DEBUG flag either according to the tag release or manual override
   CAPSTONE_DEBUG: ${{ inputs.debugMode != '' && inputs.debugMode || startsWith(github.ref, 'refs/tags') && '0' || '1' }}
