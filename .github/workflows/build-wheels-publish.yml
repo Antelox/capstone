@@ -91,14 +91,20 @@ jobs:
 
       - name: Convert YAML test files to compact JSON in-place
         run: |
-          python3 -m pip install pyyaml
+          python3 -m pip install --break-system-packages pyyaml
           python3 -c '
           import json, pathlib, yaml
 
           count = 0
           for root in ("tests", "suite"):
-              for p in pathlib.Path(root).rglob("*.y*ml"):
-                  data = yaml.load(p.read_text(encoding="utf-8"), Loader=yaml.CSafeLoader)
+              base = pathlib.Path(root)
+              if not base.is_dir():
+                  continue
+              for p in base.rglob("*.y*ml"):
+                  if not p.is_file():
+                      continue
+                  docs = list(yaml.load_all(p.read_text(encoding="utf-8"), Loader=yaml.CSafeLoader))
+                  data = docs[0] if len(docs) == 1 else docs
                   p.write_text(json.dumps(data, separators=(",", ":"), default=str), encoding="utf-8")
                   count += 1
           print(f"Converted {count} test files to compact JSON.")
