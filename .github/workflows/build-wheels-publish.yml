@@ -34,8 +34,6 @@ concurrency:
 env:
   # Enable DEBUG flag either according to the tag release or manual override
   CAPSTONE_DEBUG: ${{ inputs.debugMode != '' && inputs.debugMode || startsWith(github.ref, 'refs/tags') && '0' || '1' }}
-  PYYAML_FORCE_LIBYAML: "0"
-  PYYAML_FORCE_CYTHON: "0"
 
 jobs:
   build_and_test_wheels:
@@ -90,6 +88,21 @@ jobs:
         if: runner.os == 'macOS' && runner.arch == 'ARM64'
         with:
           python-version: 3.8
+
+      - name: Convert YAML test files to compact JSON in-place
+        run: |
+          python3 -m pip install pyyaml
+          python3 -c '
+          import json, pathlib, yaml
+
+          count = 0
+          for root in ("tests", "suite"):
+              for p in pathlib.Path(root).rglob("*.y*ml"):
+                  data = yaml.load(p.read_text(encoding="utf-8"), Loader=yaml.CSafeLoader)
+                  p.write_text(json.dumps(data, separators=(",", ":"), default=str), encoding="utf-8")
+                  count += 1
+          print(f"Converted {count} test files to compact JSON.")
+          '
 
       - name: '🛠️ Win MSVC 32 dev cmd setup'
         if: runner.os == 'Windows' && matrix.arch == 'x86'
