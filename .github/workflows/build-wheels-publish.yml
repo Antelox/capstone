@@ -34,6 +34,8 @@ concurrency:
 env:
   # Enable DEBUG flag either according to the tag release or manual override
   CAPSTONE_DEBUG: ${{ inputs.debugMode != '' && inputs.debugMode || startsWith(github.ref, 'refs/tags') && '0' || '1' }}
+  PYYAML_FORCE_LIBYAML: "0"
+  PYYAML_FORCE_CYTHON: "0"
 
 jobs:
   build_and_test_wheels:
