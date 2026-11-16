@@ -96,6 +96,7 @@ jobs:
           import json, pathlib, yaml
 
           count = 0
+          skipped = 0
           for root in ("tests", "suite"):
               base = pathlib.Path(root)
               if not base.is_dir():
@@ -103,11 +104,15 @@ jobs:
               for p in base.rglob("*.y*ml"):
                   if not p.is_file():
                       continue
-                  docs = list(yaml.load_all(p.read_text(encoding="utf-8"), Loader=yaml.CSafeLoader))
+                  try:
+                      docs = list(yaml.load_all(p.read_text(encoding="utf-8"), Loader=yaml.CSafeLoader))
+                  except yaml.YAMLError:
+                      skipped += 1
+                      continue
                   data = docs[0] if len(docs) == 1 else docs
                   p.write_text(json.dumps(data, separators=(",", ":"), default=str), encoding="utf-8")
                   count += 1
-          print(f"Converted {count} test files to compact JSON.")
+          print(f"Converted {count} test files to compact JSON (skipped {skipped} invalid fixtures).")
           '
 
       - name: '🛠️ Win MSVC 32 dev cmd setup'
