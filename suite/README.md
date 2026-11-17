@@ -30,10 +30,6 @@ _run_invalid_cstool.sh_
 
 Test script to check if `cstool` fails as expected for invalid input.
 
-_run_tests.py_
-
-Script to run all Python tests.
-
 _test_corpus3.py_
 
 Helper script for fuzzing.

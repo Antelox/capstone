@@ -68,14 +68,16 @@ ctest --test-dir build -N
 ctest --test-dir build -R "<name>"
 ```
 
-#### `cstest_py`
+#### `pytest` (Python bindings)
 
-`cstest_py` is the testing tool written in Python. It is implemented in `bindings/python/cstest_py`
-It consumes the `yaml` files and reports errors or mismatches for disassembled instructions and their details.
+The `yaml` test files can also be run with `pytest` through the Python bindings.
+`bindings/python/tests/test_yaml.py` generates one parametrized test per yaml
+test case. The yaml files are found by searching all files and directories
+passed on the command line. If none contain yaml tests, the directories
+configured in `cstest_yaml_dirs` (in `bindings/python/pyproject.toml`,
+currently `../../tests`) are used instead.
 
-**Installing**
-
-You need to install the Capstone Python bindings first and afterwards the `cstest_py`.
+> _Dependencies:_ `pytest` and `pyyaml` (and the Python bindings of course).
 
 ```bash
 # Optionally, create a new virtual environment
@@ -84,24 +86,26 @@ source .venv/bin/activate
 
 cd bindings/python
 pip install -e .
-pip install -e cstest_py
+pip install pytest pyyaml
 cd ../..
 ```
 
-Run the integration tests for `cstest_py` itself
+Run the tests
 
 ```bash
-./suite/cstest/test/integration_tests.py cstest_py
+# Run all yaml tests and the other Python binding tests
+# (yaml files are taken from the cstest_yaml_dirs config)
+python -m pytest bindings/python/tests
+
+# Run only the yaml tests of a single directory
+python -m pytest bindings/python/tests/test_yaml.py tests/MC/
+
+# Select specific tests with -k (matches yaml file and case names)
+python -m pytest bindings/python/tests/test_yaml.py tests/ -k "mov"
 ```
 
-And run the tests
-
-```bash
-# Check supported options
-cstest_py -h
-# Run all
-cstest_py tests/
-```
+Test files below a `negative` directory are expected to fail
+(they are marked `xfail` and an unexpected pass fails the run).
 
 ## Add new tests
 

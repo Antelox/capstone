@@ -26,7 +26,6 @@ files_to_format.txt
 # python
 bindings/python/build/
 bindings/python/capstone.egg-info/
-bindings/python/cstest_py/src/cstest_py.egg**
 bindings/cython/capstone.egg-info/
 *.pyc
 

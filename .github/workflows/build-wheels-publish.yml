@@ -124,8 +124,8 @@ jobs:
           # https://github.com/pypa/cibuildwheel/pull/1169
           CIBW_TEST_SKIP: "cp38-macosx_*:arm64"
           CIBW_TEST_COMMAND: >
-            python -m pip install {package}/cstest_py &&
-            python {project}/suite/run_tests.py
+            python -m pip install pytest pytest-xdist pyyaml &&
+            python -m pytest -n auto --dist worksteal {project}/bindings/python/tests
         with:
           package-dir: bindings/python
           output-dir: wheelhouse

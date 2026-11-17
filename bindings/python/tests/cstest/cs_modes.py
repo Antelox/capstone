@@ -58,20 +58,14 @@ configs = {
         "type": cs.CS_OPT_SYNTAX,
         "val": cs.CS_OPT_SYNTAX_NO_DOLLAR,
     },
-    "CS_OPT_SYNTAX_REAL": {
-        "type": cs.CS_OPT_SYNTAX,
-        "val": cs.CS_OPT_SYNTAX_REAL
-    },
+    "CS_OPT_SYNTAX_REAL": {"type": cs.CS_OPT_SYNTAX, "val": cs.CS_OPT_SYNTAX_REAL},
     "CS_OPT_SYNTAX_UNCOMPRESSED_REAL": {
         "type": cs.CS_OPT_SYNTAX,
-        "val": cs.CS_OPT_SYNTAX_UNCOMPRESSED_REAL
+        "val": cs.CS_OPT_SYNTAX_UNCOMPRESSED_REAL,
     },
-    "CS_OPT_SYNTAX_ALIAS": {
-        "type": cs.CS_OPT_SYNTAX,
-        "val": cs.CS_OPT_SYNTAX_ALIAS
-    },
+    "CS_OPT_SYNTAX_ALIAS": {"type": cs.CS_OPT_SYNTAX, "val": cs.CS_OPT_SYNTAX_ALIAS},
     "CS_OPT_SYNTAX_AARCH64_EXPLICIT_WIDE_IMM": {
         "type": cs.CS_OPT_SYNTAX,
-        "val": cs.CS_OPT_SYNTAX_AARCH64_EXPLICIT_WIDE_IMM
-    }
+        "val": cs.CS_OPT_SYNTAX_AARCH64_EXPLICIT_WIDE_IMM,
+    },
 }

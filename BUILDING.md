@@ -143,5 +143,6 @@ If not present it will attempt to build it from source.
 
 _Note:_ Currently `cstest` is only tested on Linux.
 
-If you run another operation system, please install `cstest_py`.
+If you run another operating system, the yaml tests can also be run with
+`pytest` and the Python bindings.
 See `bindings/python/BUILDING.md` for instructions.

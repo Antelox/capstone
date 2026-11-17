@@ -90,29 +90,10 @@ def run_tests(cmd: str):
         fail_msg="Test: Detecting file in directory failed.",
     )
 
-    if "cstest_py" in cmd:
-        check(
-            cmd
-            + [
-                f"{path}",
-                "-e",
-                "invalid_cs_input.yaml",
-                "-i",
-                "invalid_cs_input.yaml",
-                "min_valid_test_file.yaml",
-                "-v",
-                "debug",
-            ],
-            expected_stdout="Test files found: 2",
-            expected_stderr="",
-            fail_msg="Test: Detecting file in directory failed.",
-        )
-
 
 def print_usage_exit():
     print(f'{sys.argv[0]} "cstest_command"')
-    print('"cstest_command" examples:')
-    print('\t"python3 ../../bindings/python/cstest.py"')
+    print('"cstest_command" example:')
     print("\tcstest")
     exit(1)
 

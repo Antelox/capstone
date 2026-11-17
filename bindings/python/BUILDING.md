@@ -8,14 +8,15 @@
 pip install bindings/python/
 ```
 
-2. Building cstest_py
+2. Running the disassembler tests
 
-To run the disassembler tests you can install `cstest_py` as alternative to the normal `cstest`.
-In contrast to `cstest`, `cstest_py` also runs on Windows and Mac.
+The disassembler tests are yaml files in `<repo-root>/tests/` and can be run
+with `pytest` as alternative to the normal `cstest`. In contrast to `cstest`,
+`pytest` also runs on Windows and Mac.
 
-Install with:
 ```
-pip install bindings/python/cstest_py/
+pip install pytest pyyaml
+python -m pytest bindings/python/tests
 ```
 
 It requires the bindings of course.
